@@ -103,6 +103,10 @@ PRODUCT_PACKAGES += \
     quipc.conf \
     sap.conf
 
+PRODUCT_PACKAGES += \
+    librmnetctl \
+    rmnetcli
+
 # Camera
 PRODUCT_PACKAGES += \
     libqomx_core \
