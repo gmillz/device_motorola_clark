@@ -19,10 +19,22 @@
 #
 # Everything in this directory will become public
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/fstab.qcom:root/fstab.qcom \
-    $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
+# setup dalvik vm configs.
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
+LOCAL_PATH := device/motorola/clark
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# Overlay
+DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay 
+
+# FSTAB
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:root/fstab.qcom \
+	$(LOCAL_PATH)/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+
+# RamDisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.class_main.sh:root/init.class_main.sh \
     $(LOCAL_PATH)/rootdir/init.mdm.sh:root/init.mdm.sh \
@@ -57,14 +69,16 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh \
     $(LOCAL_PATH)/rootdir/etc/init.wifi.mac.sh:system/etc/init.wifi.mac.sh
 
+#IRSC
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/sec_config:system/etc/sec_config
+   $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
 # Input device files for clark
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+    $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 
+# Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdbdata/Bluetooth_cal.acdb:system/etc/acdbdata/Bluetooth_cal.acdb \
     $(LOCAL_PATH)/audio/acdbdata/General_cal.acdb:system/etc/acdbdata/General_cal.acdb \
@@ -79,9 +93,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
 
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/media_profiles.xml:system/etc/media_profiles.xml \
-#    $(LOCAL_PATH)/media_codecs.xml:system/etc/media_codecs.xml
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
@@ -122,9 +136,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/mixer_paths.xml:system/etc/mixer_paths.xml
-
 PRODUCT_PACKAGES += atmel.fw.apq8084
 
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -137,9 +148,6 @@ PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi 560dpi xxxhdpi
 PRODUCT_AAPT_PREF_CONFIG := 560dpi
 
 PRODUCT_CHARACTERISTICS := default
-
-DEVICE_PACKAGE_OVERLAYS := \
-    $(LOCAL_PATH)/overlay
 
 PRODUCT_PACKAGES := \
     wifi_symlinks \
@@ -261,8 +269,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.crypto.fuse_sdcard=true \
     persist.fuse_sdcard=true
 
-# setup dalvik vm configs.
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 $(call inherit-product-if-exists, hardware/qcom/msm8x94/msm8x84.mk)
 $(call inherit-product-if-exists, vendor/qcom/gpu/msm8x94/msm8x84-gpu-vendor.mk)
