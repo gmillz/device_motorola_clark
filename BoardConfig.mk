@@ -102,6 +102,8 @@ AUDIO_FEATURE_ENABLED_FM := true
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# Malloc
+MALLOC_IMPL := dlmalloc
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
