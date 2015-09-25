@@ -94,7 +94,6 @@ HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/motorola/clark/egl.cfg
 
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
