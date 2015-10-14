@@ -113,6 +113,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.msm8992
 
+# Motorola
+PRODUCT_PACKAGES += \
+    libmoto
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \
