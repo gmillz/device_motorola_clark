@@ -103,6 +103,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     libqomx_core \
+    libmm-qcamera \
     libmmcamera_interface \
     libmmjpeg_interface \
     mm-jpeg-interface-test \
