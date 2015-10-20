@@ -115,6 +115,7 @@ lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libmot_sensorlistener.so
 lib/libmot-qc-fd-offline.so
+lib/libmm-qcamera.so
 lib/libqomx_core.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libflash_pmic.so
@@ -302,6 +303,10 @@ vendor/lib/libvoice-svc.so
 
 # GPS
 bin/loc_launcher
+bin/location-mq
+bin/xtwifi-inet-agent
+bin/xtwifi-client
+etc/xtwifi.conf
 vendor/lib/libgeofence.so
 vendor/lib/liblbs_core.so
 vendor/lib/libloc_ext.so
@@ -461,6 +466,10 @@ vendor/lib/libsubsystem_control.so
 vendor/lib/libSubSystemShutdown.so
 etc/cne/andsfCne.xml
 etc/cne/SwimConfig.xml
+lib/libextendedmediaextractor.so
+lib/libextendedmediaextractor_jni.so
+lib/libunshorten.so
+vendor/lib/libtime_genoff.so
 
 # diag_mdlog
 etc/diag_mdlog/Bluetooth_audio_V1.cfg
@@ -494,10 +503,13 @@ vendor/lib/libimsmedia_jni.so
 # Prebuilt APKs
 app/MotGeoFenceSvc/MotGeoFenceSvc.apk
 app/TimeService/TimeService.apk
+app/atfwd/atfwd.apk
 
 # Prebuilt privileged APKs
 priv-app/com.qualcomm.location/com.qualcomm.location.apk
 priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+priv-app/CNEService/CNEService.apk
+priv-app/MotoSignatureApp/MotoSignatureApp.apk
 
 # Prebuilt Vendor APKs
 vendor/app/ims/ims.apk
@@ -506,3 +518,8 @@ vendor/app/ims/ims.apk
 framework/com.verizon.ims.jar
 framework/qcnvitems.jar
 framework/qcrilhook.jar
+framework/extendedmediaextractor.jar
+framework/org.simalliance.openmobileapi.jar
+framework/cneapiclient.jar
+framework/com.motorola.motosignature.jar
+framework/com.quicinc.cne.jar
