@@ -505,4 +505,4 @@ vendor/app/ims/ims.apk
 # Prebuilt Jars
 framework/com.verizon.ims.jar
 framework/qcnvitems.jar
-qcrilhook.jar
+framework/qcrilhook.jar
