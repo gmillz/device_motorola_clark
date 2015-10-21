@@ -115,7 +115,8 @@ PRODUCT_PACKAGES += \
 
 # Motorola
 PRODUCT_PACKAGES += \
-    libmoto
+    libmoto \
+    libboringssl-compat
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
