@@ -180,19 +180,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libdivxdrmdecrypt \
-    libdashplayer \
-    libOmxAacEnc \
-    libOmxAmrEnc \
     libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
     libOmxVdec \
-    libOmxVdecHevc \
     libOmxVenc \
-    libstagefrighthw \
-    qcmediaplayer
-
-PRODUCT_BOOT_JARS += qcmediaplayer
+    libstagefrighthw
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -204,9 +195,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libaudio-resampler \
-    libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessingdescriptors \
     libqcomvoiceprocessing \
     tinymix
 
