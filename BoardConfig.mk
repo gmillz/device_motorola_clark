@@ -73,6 +73,9 @@ BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/cmhw/
 # Font
 EXTENDED_FONT_FOOTPRINT := true
 
+# Time service
+BOARD_USES_QC_TIME_SERVICES := true
+
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 
