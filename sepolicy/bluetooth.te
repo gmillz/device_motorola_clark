@@ -1,2 +1,0 @@
-allow bluetooth firmware_file:dir search;
-allow bluetooth firmware_file:file { read open getattr };
