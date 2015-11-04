@@ -167,10 +167,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.speaker=true \
     audio.offload.gapless.enabled=true
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.crypto.fuse_sdcard=true \
-    persist.fuse_sdcard=true
-
 # Display
 PRODUCT_PACKAGES += \
     gralloc.msm8992 \
