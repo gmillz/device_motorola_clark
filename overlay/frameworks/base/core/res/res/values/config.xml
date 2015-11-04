@@ -353,4 +353,7 @@
          performance profiles  -->
     <string name="config_perf_profile_default_entry" translatable="false">1</string>
 
+    <!-- enable doze powersaving mode -->
+    <bool name="config_enableAutoPowerModes">true</bool>
+
 </resources>
