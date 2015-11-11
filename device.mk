@@ -118,6 +118,10 @@ PRODUCT_PACKAGES += \
     libmoto \
     libboringssl-compat
 
+# Stlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \
