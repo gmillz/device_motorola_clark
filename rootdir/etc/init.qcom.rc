@@ -377,7 +377,7 @@ on nonencrypted
 
 on property:init.svc.bootanim=running
     # Switch to performance mode while booting
-    # setprop sys.perf.profile 2
+    setprop sys.perf.profile 2
 
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
@@ -746,64 +746,112 @@ service thermal-com /system/bin/thermal-engine --minimode
 # CM Performance Profiles
 # Powersave
 on property:sys.perf.profile=0
-    stop perfd
+    #stop perfd
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "powersave"
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "powersave"
     write /sys/class/devfreq/qcom,cpubw.26/governor "powersave"
-    start perfd
+    #start perfd
 
 # Balanced
 on property:sys.perf.profile=1
-    stop perfd
-    # Bring both clusters online
+    #stop perfd
+    # Bring little clusters online
     write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu4/online 1
+
+    # take A57 offline
+    write /sys/devices/system/cpu/cpu4/online 0
+    write /sys/devices/system/cpu/cpu5/online 0
 
     # Disable thermal control
     write /sys/module/msm_thermal/core_control/enabled 0
-    
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
+
+    # Disable CPU retention
+    write /sys/module/lpm_levels/system/a53/cpu0/retention/idle_enabled 0
+    write /sys/module/lpm_levels/system/a53/cpu1/retention/idle_enabled 0
+    write /sys/module/lpm_levels/system/a53/cpu2/retention/idle_enabled 0
+    write /sys/module/lpm_levels/system/a53/cpu3/retention/idle_enabled 0
+    write /sys/module/lpm_levels/system/a57/cpu4/retention/idle_enabled 0
+    write /sys/module/lpm_levels/system/a57/cpu5/retention/idle_enabled 0
+
+    # Disable L2 retention
+    write /sys/module/lpm_levels/system/a53/a53-l2-retention/idle_enabled 0
+    write /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled 0
 
     # Setup Little interactive settings
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    restorecon -R /sys/devices/system/cpu # must restore after interactive
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 99
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 80
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "65 460800:75 960000:80"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 80000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
 
+    # online CPU4
+    write /sys/devices/system/cpu/cpu4/online 1
+
     # Setup Big interactive settings
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
+    restorecon -R /sys/devices/system/cpu # must restore after interactive
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 19000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 99
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 19000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1248000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads 85
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "70 960000:80 1248000:85"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 384000
+
+    # restore A57's max
+    copy /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+
+    # plugin remaining A57s
+    write /sys/devices/system/cpu/cpu5/online 1
+
+    # Restore CPU 4 max freq from msm_performance
+    write /sys/module/msm_performance/parameters/cpu_max_freq "4:4294967295 5:4294967295"
+
+    # input boost configuration
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 40
+
+    # Setting B.L scheduler parameters
+    write /proc/sys/kernel/sched_migration_fixup 1
+    write /proc/sys/kernel/sched_upmigrate 95
+    write /proc/sys/kernel/sched_downmigrate 85
+    write /proc/sys/kernel/sched_freq_inc_notify 400000
+    write /proc/sys/kernel/sched_freq_dec_notify 400000
+
+    #enable rps static configuration
+    write /sys/class/net/rmnet_ipa0/queues/rx-0/rps_cpus 8
+
+    # android background processes are set to nice 10. Never schedule these on the a57s.
+    write /proc/sys/kernel/sched_upmigrate_min_nice 9
+
+    # Disable sched_boost
+    write /proc/sys/kernel/sched_boost 0
 
     # Enable thermal core
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "msm-adreno-tz"
     write /sys/class/devfreq/qcom,cpubw.26/governor "cpufreq"
 
-    start perfd
+    #start perfd
 
 # High performance
 on property:sys.perf.profile=2
-    stop perfd
+    #stop perfd
 
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -812,4 +860,4 @@ on property:sys.perf.profile=2
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "performance"
     write /sys/class/devfreq/qcom,cpubw.26/governor "performance"
 
-    start perfd
+    #start perfd
