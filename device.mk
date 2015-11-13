@@ -244,17 +244,10 @@ PRODUCT_COPY_FILES += \
 ## Do not edit
 
 PRODUCT_PACKAGES += \
-    init.class_main.sh \
     fstab.qcom \
     twrp.fstab \
-    init.mmi.boot.sh \
-    init.mmi.early_boot.sh \
-    init.mmi.touch.sh \
-    init.mmi.usb.rc \
-    init.mmi.usb.sh \
     init.qcom.rc \
-    init.mmi.block_perm.sh \
-    init.qcom.sh \
+    init.qcom.usb.rc \
     ueventd.qcom.rc
 
 # Wifi Firmware

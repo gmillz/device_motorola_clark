@@ -1,4 +1,4 @@
-import init.mmi.usb.rc
+import init.qcom.usb.rc
 
 on charger
     trigger early-fs
@@ -419,12 +419,6 @@ on property:sys.shutdown.requested=*
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
-on property:persist.radio.atfwd.start=false
-    stop atfwd
-
-on property:radio.atfwd.start=false
-    stop atfwd
-
 on property:ro.fuse_sdcard=true
     start sdcard
 
@@ -568,23 +562,6 @@ service location_mq /system/bin/location-mq
     group gps
     disabled
 
-service xtwifi_inet /system/bin/xtwifi-inet-agent
-    class late_start
-    user gps
-    group inet gps
-    disabled
-
-service xtwifi_client /system/bin/xtwifi-client
-    class late_start
-    user gps
-    group net_admin wifi inet gps
-    disabled
-
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
-
 service hostapd /system/bin/hostapd -dd /data/misc/wifi/hostapd.conf
     class late_start
     user root
@@ -695,10 +672,6 @@ service dpmd /system/bin/dpmd
     class late_start
     socket dpmd stream 660 root system
 
-service ssr_setup /system/bin/ssr_setup
-    oneshot
-    disabled
-
 service ftm_ffbm /system/bin/ftmdaemon
     user root
     group root
@@ -719,15 +692,6 @@ on property:sys.usb_uicc.enabled=1
 
 on property:sys.usb_uicc.enabled=0
     start usb_uicc_enable
-
-service ssr_diag /system/bin/ssr_diag
-    class late_start
-    user system
-    group system
-    disabled
-
-on property:persist.sys.ssr.restart_level=*
-    start ssr_setup
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
@@ -756,48 +720,6 @@ service motosh /system/bin/motosh boot
     class late_start
     user compass
     group compass misc input mot_tcmd
-    oneshot
-
-service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
-    class core
-    user root
-    oneshot
-
-service qcom-c_main-sh /system/bin/sh /init.class_main.sh
-    class main
-    user radio
-    group radio
-    oneshot
-
-service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
-    user root
-    oneshot
-
-service mmi-block-perm /system/bin/sh /init.mmi.block_perm.sh
-    class main
-    user root
-    oneshot
-
-service mmi-boot-sh /system/bin/sh /init.mmi.boot.sh
-    class core
-    user root
-    oneshot
-
-service mmi-early_boot-sh /system/bin/sh /init.mmi.early_boot.sh
-    class late_start
-    user root
-    oneshot
-
-service mmi-touch-sh /system/bin/sh /init.mmi.touch.sh synaptics
-    class core
-    user root
-    oneshot
-
-service hw_revs /system/bin/sh /system/bin/hardware_revisions.sh
-    class late_start
-    user system
-    group system
     oneshot
 
 service adspd /system/bin/adspd
