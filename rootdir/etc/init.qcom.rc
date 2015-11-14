@@ -658,12 +658,6 @@ service atvc /system/bin/dbvc_atvc_property_set
     group mot_tpapi
     oneshot
 
-service msm_irqbalance /system/bin/msm_irqbalance -f /system/etc/msm_irqbalance.conf
-    class core
-    user root
-    group root
-    disabled
-
 service cnd /system/bin/cnd
     class late_start
     socket cnd stream 660 root inet
@@ -710,12 +704,6 @@ service charge_only_mode /system/bin/charge_only_mode
     group graphics system input
     disabled
 
-service ftmipcd /system/bin/ftmipcd
-    user radio
-    group radio net_raw inet qcom_diag
-    disabled
-    oneshot
-
 service motosh /system/bin/motosh boot
     class late_start
     user compass
@@ -733,11 +721,6 @@ service perfd /system/bin/perfd
     user root
     disabled
 
-service thermal-engine /system/bin/thermal-engine
-    class main
-    user root
-    group root
-
 service thermal-com /system/bin/thermal-engine --minimode
     class main
     user root
@@ -746,18 +729,16 @@ service thermal-com /system/bin/thermal-engine --minimode
 # CM Performance Profiles
 # Powersave
 on property:sys.perf.profile=0
-    #stop perfd
+    stop perfd
     write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor conservative
     write /sys/module/msm_thermal/core_control/enabled 1
-    write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "powersave"
-    write /sys/class/devfreq/qcom,cpubw.26/governor "powersave"
-    #start perfd
+    start perfd
 
 # Balanced
 on property:sys.perf.profile=1
-    #stop perfd
+    stop perfd
     # Bring little clusters online
     write /sys/devices/system/cpu/cpu0/online 1
 
@@ -813,9 +794,6 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 384000
 
-    # restore A57's max
-    copy /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-
     # plugin remaining A57s
     write /sys/devices/system/cpu/cpu5/online 1
 
@@ -842,16 +820,22 @@ on property:sys.perf.profile=1
     # Disable sched_boost
     write /proc/sys/kernel/sched_boost 0
 
+    # Thunderplug - enable and set some default values
+    write /sys/kernel/thunderplug/hotplug_enabled 1
+    write /sys/kernel/thunderplug/suspend_cpus 1
+    write /sys/kernel/thunderplug/load_threshold 90
+    write /sys/kernel/thunderplug/
+
     # Enable thermal core
     write /sys/module/msm_thermal/core_control/enabled 1
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "msm-adreno-tz"
     write /sys/class/devfreq/qcom,cpubw.26/governor "cpufreq"
 
-    #start perfd
+    start perfd
 
 # High performance
 on property:sys.perf.profile=2
-    #stop perfd
+    stop perfd
 
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -860,4 +844,4 @@ on property:sys.perf.profile=2
     write /sys/class/devfreq/1c00000.qcom,kgsl-3d0/governor "performance"
     write /sys/class/devfreq/qcom,cpubw.26/governor "performance"
 
-    #start perfd
+    start perfd
