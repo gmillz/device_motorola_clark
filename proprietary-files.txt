@@ -520,7 +520,6 @@ etc/xtwifi.conf
 
 # Wat - weird files
 lib64/libadropbox.so
-lib/libspeakerbundle.so
 lib/libunshorten.so
 lib/soundfx/libmmieffectswrapper.so
 lib/libmbs.so
