@@ -19,6 +19,9 @@
 #
 # Everything in this directory will become public
 
+# System properties
+include $(LOCAL_PATH)/system_prop.mk
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
@@ -144,37 +147,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     pp_calib_data_mipi_mot_cmd_inx_QHD_0_570_v0.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=560
-
 # Include IMSEnabler
 #PRODUCT_PACKAGES += \
 #    IMSEnabler
-
-# Rich Communications Service is disabled in 5.1
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.rcs.supported=0
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hwc.mdpcomp.enable=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/acdbdata/General_cal.acdb \
-    persist.audio.calfile2=/etc/acdbdata/Global_cal.acdb \
-    persist.audio.calfile3=/etc/acdbdata/Handset_cal.acdb \
-    persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb \
-    persist.audio.dualmic.config=endfire \
-    persist.audio.fluence.voicecall=true \
-    persist.audio.fluence.voicecomm=true \
-    persist.audio.fluence.voicecall=true \
-    persist.audio.fluence.speaker=true \
-    audio.offload.gapless.enabled=true
 
 # Display
 PRODUCT_PACKAGES += \
