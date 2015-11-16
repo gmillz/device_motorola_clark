@@ -188,6 +188,7 @@ BOARD_SEPOLICY_UNION += \
     rmt_storage.te \
     sysinit.te \
     system_server.te \
+    thermanager.te \
     vold.te \
     ueventd.te
 

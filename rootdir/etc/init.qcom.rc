@@ -9,7 +9,6 @@ on charger
     # setprop sys.perf.profile 0
     start charge_only_mode
     start batt_health
-    start thermal-com
     class_stop main
     class_stop late_start
 
@@ -628,12 +627,9 @@ service per_proxy /system/bin/pm-proxy
     group system net_raw
     disabled
 
-service thermal-engine /system/bin/thermal-engine
-    class main
+service thermanager /system/bin/thermanager /system/etc/thermanager.xml
+    class late_start
     user root
-    socket thermal-send-client stream 0666 system system
-    socket thermal-recv-client stream 0660 system system
-    socket thermal-recv-passive-client stream 0666 system system
     group root
 
 service time_daemon /system/bin/time_daemon
@@ -717,11 +713,6 @@ service adspd /system/bin/adspd
    group audio input diag
 
 service perfd /system/bin/perfd
-    class main
-    user root
-    disabled
-
-service thermal-com /system/bin/thermal-engine --minimode
     class main
     user root
     disabled
