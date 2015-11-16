@@ -251,6 +251,7 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     twrp.fstab \
     init.qcom.rc \
+    init.qcom.power.rc \
     init.qcom.usb.rc \
     ueventd.qcom.rc
 
