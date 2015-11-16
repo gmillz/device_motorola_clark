@@ -476,7 +476,6 @@ vendor/lib/libmdmdetect.so
 vendor/lib/libnetmgr.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qcril-hook-oem.so
-vendor/lib/libtime_genoff.so
 vendor/lib/libxml.so
 vendor/lib/libperipheral_client.so
 
@@ -495,10 +494,7 @@ vendor/lib/libSubSystemShutdown.so
 lib64/hw/sensorhub.msm8992.so
 
 # Time (Linked to radio)
--app/TimeService/TimeService.apk
-bin/time_daemon
-vendor/lib/libTimeService.so
--vendor/lib/libtime_geoff.so
+-vendor/lib/libtime_genoff.so
 vendor/lib/hw/flp.default.so
 vendor/lib/hw/activity_recognition.msm8992.so
 vendor/lib/egl/libQTapGLES.so

@@ -19,3 +19,6 @@
 
 #CMHW
 /sys/vibrator/pwmvalue        u:object_r:vibeamp_sysfs:s0
+
+# timekeep
+/system/bin/timekeep          u:object_r:timekeep_exec:s0

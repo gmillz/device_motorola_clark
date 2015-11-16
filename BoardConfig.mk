@@ -172,25 +172,33 @@ BOARD_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    atfwd.te \
-    file.te \
-    device.te \
     adspd.te \
+    atfwd.te \
     batt_health.te \
     bluetooth.te \
+    device.te \
+    file.te \
     file_contexts \
     healthd.te \
     init.te \
     init_shell.te \
+    mediaserver.te \
     mm-qcamerad.te \
+    property.te \
+    property_contexts \
     qmuxd.te \
     rild.te \
     rmt_storage.te \
+    service_contexts \
     sysinit.te \
+    system_app.te \
     system_server.te \
     thermanager.te \
+    timekeep.te \
+    ueventd.te \
+    usb_uicc_daemon.te \
     vold.te \
-    ueventd.te
+    wcnss_filter.te
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
