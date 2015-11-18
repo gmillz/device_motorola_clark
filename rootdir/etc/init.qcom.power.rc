@@ -12,11 +12,6 @@ on property:sys.boot_completed=1
     # Never schedule these on the A57
     write /proc/sys/kernel/sched_upmigrate_min_nice 9
 
-    # Thunderplug - enable and set some default values
-    write /sys/kernel/thunderplug/hotplug_enabled 1
-    write /sys/kernel/thunderplug/suspend_cpus 1
-    write /sys/kernel/thunderplug/load_threshold 90
-
     #enable rps static configuration
     write /sys/class/net/rmnet_ipa0/queues/rx-0/rps_cpus 0
     write /proc/sys/kernel/sched_small_task 30
