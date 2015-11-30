@@ -1,6 +1,6 @@
 type batt_health, domain;
 type batt_health_exec, exec_type, file_type;
-init_daemon_domain(batt_health)
+init_daemon_domain(batt_health);
 
 allow batt_health self:netlink_kobject_uevent_socket { create setopt bind read };
 allow batt_health self:capability net_admin;
