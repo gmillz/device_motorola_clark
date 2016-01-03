@@ -149,9 +149,27 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     pp_calib_data_mipi_mot_cmd_inx_QHD_0_570_v0.xml
 
-# Include IMSEnabler
-#PRODUCT_PACKAGES += \
-#    IMSEnabler
+# Rich Communications Service is disabled in 5.1
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.rcs.supported=0
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.hwc.mdpcomp.enable=true
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+
+PRODUCT_PACKAGES += \
+    init.class_main.sh \
+    fstab.qcom \
+    init.mmi.boot.sh \
+    init.mmi.usb.rc \
+    init.mmi.usb.sh \
+    init.qcom.rc \
+    init.mmi.block_perm.sh \
+    init.qcom.class_core.sh \
+    init.qcom.sh \
+    ueventd.qcom.rc
 
 # Display
 PRODUCT_PACKAGES += \
@@ -216,21 +234,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/audio/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
-
-## Below here are confirmed important things 
-## Do not edit
-
-PRODUCT_PACKAGES += \
-    init.class_main.sh \
-    fstab.qcom \
-    twrp.fstab \
-    init.mmi.boot.sh \
-    init.mmi.usb.rc \
-    init.mmi.usb.sh \
-    init.qcom.rc \
-    init.mmi.block_perm.sh \
-    init.qcom.sh \
-    ueventd.qcom.rc
 
 # Wifi Firmware
 PRODUCT_COPY_FILES += \
