@@ -122,11 +122,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.msm8992
 
-# Motorola
-PRODUCT_PACKAGES += \
-    libmoto \
-    libboringssl-compat
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \
