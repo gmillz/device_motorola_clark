@@ -46,10 +46,10 @@ bin/fm_qsoc_patches
 vendor/bin/audioflacapp
 lib/hw/audio.motvr.default.so
 lib/libmotaudioutils.so
-lib/libunshorten.so
-lib/libtinyalsa.so
-lib/libtinycompress.so
-lib/libtinyxml.so
+bin/fmconfig
+bin/fmfactorytest
+bin/fmfactorytestserver
+lib/libqcomfm_jni.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbmapper.so
@@ -269,9 +269,6 @@ vendor/lib/libchromatix_ov5693_video.so
 # CPU
 bin/msm_irqbalance
 bin/perfd
-bin/thermal-engine
-vendor/lib64/libthermalioctl.so
-vendor/lib/libthermalclient.so
 vendor/lib/libqti-perfd-client.so
 
 # DM/Sprint
@@ -537,7 +534,7 @@ vendor/bin/slim_ap_daemon
 # Wat - weird files
 lib/soundfx/libmmieffectswrapper.so
 bin/cnss-daemon
-bin/fsck.exfat
+bin/dpmd
 bin/ftmdaemon
 bin/ssr_diag
 bin/ssr_setup
