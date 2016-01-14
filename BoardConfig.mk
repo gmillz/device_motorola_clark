@@ -73,10 +73,10 @@ TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 TARGET_HW_DISK_ENCRYPTION := true
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS := \
-    $(DEVICE_PATH)/cmhw \
-    hardware/cyanogen/cmhw
+#BOARD_USES_CYANOGEN_HARDWARE := true
+#BOARD_HARDWARE_CLASS := \
+#    $(DEVICE_PATH)/cmhw \
+#    hardware/cyanogen/cmhw
 
 # Font
 EXTENDED_FONT_FOOTPRINT := true
