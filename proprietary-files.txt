@@ -319,7 +319,6 @@ vendor/lib/libmm-qdcm.so
 vendor/lib/libsd_sdk_display.so
 
 # QMI
-bin/ATFWD-daemon
 bin/irsc_util
 bin/pm-proxy
 bin/pm-service
@@ -492,7 +491,6 @@ lib/libadspd.so
 lib/libmdmcutback.so
 lib/libmotext_inf.so
 lib/libqmimotext.so
--priv-app/atfwd/atfwd.apk
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
 vendor/lib/libimscamera_jni.so
