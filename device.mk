@@ -120,6 +120,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    libcamera \
     libqomx_core \
     libmm-qcamera \
     libmmcamera_interface \
