@@ -452,6 +452,7 @@ service ril-daemon2 /system/bin/rild -c 2
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
+    disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
 service ril-daemon3 /system/bin/rild -c 3
@@ -461,6 +462,20 @@ service ril-daemon3 /system/bin/rild -c 3
     user root
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
+
+# When property ro.boot.num-sims is set
+on property:ro.boot.num-sims=1
+    setprop persist.radio.multisim.config ""
+
+on property:persist.radio.multisim.config=dsds
+    start ril-daemon2
+
+on property:persist.radio.multisim.config=dsda
+    start ril-daemon2
+
+on property:persist.radio.multisim.config=tsts
+    start ril-daemon2
+    start ril-daemon3
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
