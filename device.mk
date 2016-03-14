@@ -84,9 +84,6 @@ PRODUCT_PACKAGES += \
     timekeep \
     TimeKeep
 
-# never dexopt the MotoSignature
-$(call add-product-dex-preopt-module-config,MotoSignatureApp,disable)
-
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
