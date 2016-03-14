@@ -254,6 +254,7 @@ vendor/lib/libchromatix_ov5693_video.so
 bin/msm_irqbalance
 bin/perfd
 vendor/lib/libqti-perfd-client.so
+vendor/lib/libthermalclient.so
 
 # DM/Sprint
 -app/DMConfigUpdateLight/DMConfigUpdateLight.apk
@@ -296,7 +297,6 @@ vendor/lib/libtzdrmgenprov.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
 # Display tuning
@@ -506,6 +506,4 @@ etc/sensors/sensor_def_qcomdev.conf
 
 # Wat - weird files
 vendor/lib/hw/flp.default.so
-bin/ftmdaemon
-bin/ssr_diag
 bin/ssr_setup
