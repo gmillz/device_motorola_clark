@@ -153,6 +153,7 @@ PRODUCT_PACKAGES += \
     init.mmi.usb.rc \
     init.qcom.rc \
     init.qcom.power.rc \
+    init.clark.power.sh \
     ueventd.qcom.rc
 
 # Display
