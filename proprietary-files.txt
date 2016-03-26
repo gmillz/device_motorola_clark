@@ -46,10 +46,8 @@ bin/fm_qsoc_patches
 vendor/bin/audioflacapp
 lib/hw/audio.motvr.default.so
 lib/libmotaudioutils.so
-bin/fmconfig
-bin/fmfactorytest
-bin/fmfactorytestserver
 lib/libqcomfm_jni.so
+lib/libunshorten.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbmapper.so
@@ -523,18 +521,13 @@ vendor/lib/libSubSystemShutdown.so
 lib64/hw/sensorhub.msm8992.so
 vendor/lib/libsensor1.so
 
-# Time (Linked to radio)
-bin/time_daemon
-vendor/lib/libTimeService.so
-vendor/lib/hw/flp.default.so
-
 # Wifi Firmware
 vendor/bin/slim_ap_daemon
 
 # Wat - weird files
+vendor/lib/hw/flp.default.so
 lib/soundfx/libmmieffectswrapper.so
 bin/cnss-daemon
-bin/dpmd
 bin/ftmdaemon
 bin/ssr_diag
 bin/ssr_setup

@@ -82,6 +82,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     thermanager
 
+# Sony timekeep
+PRODUCT_PACKAGES += \
+    timekeep \
+    TimeKeep
+
 # never dexopt the MotoSignature
 $(call add-product-dex-preopt-module-config,MotoSignatureApp,disable)
 
