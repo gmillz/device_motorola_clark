@@ -10,7 +10,7 @@
    "branch":      "mm6.0"
  },
  {
-   "repository":  "CyanogenMod/android_hardware_sony_timekeep",
+   "repository":  "SlimRoms/hardware_sony_timekeep",
    "target_path": "hardware/sony/timekeep",
    "branch":      "mm6.0"
  }
