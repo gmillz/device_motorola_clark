@@ -2,11 +2,16 @@
  {
    "repository":  "SlimRoms/kernel_motorola_msm8992",
    "target_path": "kernel/motorola/msm8992",
-   "branch":      "lp5.1"
+   "branch":      "mm6.0"
  },
  {
-   "repository":  "SlimRoms/android_external_bson",
-   "target_path": "external/bson",
-   "branch":      "lp5.1"
+   "repository":  "SlimRoms/hardware_sony_thermanager",
+   "target_path": "hardware/sony/thermanager",
+   "branch":      "mm6.0"
+ },
+ {
+   "repository":  "CyanogenMod/android_hardware_sony_timekeep"
+   "target_path": "hardware/sony/timekeep",
+   "branch":      "mm6.0"
  }
 ]
