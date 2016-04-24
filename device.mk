@@ -165,7 +165,6 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_PACKAGES += \
-    libstagefrighthw \
     libc2dcolorconvert \
     libdivxdrmdecrypt \
     libOmxAacEnc \
@@ -177,8 +176,9 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
-PRODUCT_BOOT_JARS += \
-    libstagefrighthw
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8992
 
 # Audio
 PRODUCT_PACKAGES += \
