@@ -23,10 +23,9 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-ifneq ($(filter clark, $(TARGET_DEVICE)),)
-
 LOCAL_PATH := $(call my-dir)
 
+ifneq ($(filter clark, $(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 # FSG symlinks
@@ -51,7 +50,6 @@ ALL_DEFAULT_INSTALLED_MODULES += $(FSG_SYMLINKS)
 
 # IMS symlinks
 IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
-
 IMS_SYMLINKS := $(addprefix $(TARGET_OUT)/app/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
 $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "IMS lib link: $@"
@@ -59,6 +57,6 @@ $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@rm -rf $@
 	$(hide) ln -sf /system/vendor/lib64/$(notdir $@) $@
 
-ALL_DEFAULT_INSTALLED_MODULES += $(IMS_SYMLINKS)
+ALL_DEFAULT_INSTALLED_MODULES += $(FSG_SYMLINKS) $(IMS_SYMLINKS)
 
 endif
