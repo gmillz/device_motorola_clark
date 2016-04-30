@@ -21,8 +21,6 @@
 /system/bin/thermanager                         u:object_r:thermanager_exec:s0
 /system/bin/timekeep                            u:object_r:timekeep_exec:s0
 /system/bin/motosh                              u:object_r:motosh_exec:s0
-/system/bin/init\.clark\.power\.sh              u:object_r:init-power-sh_exec:s0
-
 
 /dev/ttyHS0                                     u:object_r:hci_attach_dev:s0
 
