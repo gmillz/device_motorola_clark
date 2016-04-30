@@ -84,7 +84,6 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.mmi.usb.rc \
     init.qcom.power.rc \
-    init.clark.power.sh \
     init.qcom.rc \
     ueventd.qcom.rc
 
