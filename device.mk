@@ -79,6 +79,10 @@ PRODUCT_PACKAGES += \
     libqdutils \
     libqdMetaData
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
