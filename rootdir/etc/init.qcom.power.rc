@@ -10,9 +10,9 @@ on charger
     trigger fs
     trigger post-fs
     trigger post-fs-data
+    trigger moto-charger
     class_stop main
     class_stop late_start
-    trigger moto-charger
 
 on moto-charger
     setprop ro.board.platform msm8992
@@ -157,6 +157,13 @@ on enable-low-power
     write /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled 0
 
     # Enable timer migration to little cluster
+    write /proc/sys/kernel/power_aware_timer_migration 1
+
+    start perfd
+
+on property:sys.boot_completed=1
+    trigger enable-low-power
+ittle cluster
     write /proc/sys/kernel/power_aware_timer_migration 1
 
     start perfd
