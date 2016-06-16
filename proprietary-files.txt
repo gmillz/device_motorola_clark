@@ -503,7 +503,6 @@ vendor/lib/libsubsystem_control.so
 vendor/lib/libSubSystemShutdown.so
 lib64/hw/sensorhub.msm8992.so
 vendor/lib/libsensor1.so
-etc/sensors/sensor_def_qcomdev.conf
 
 # Wat - weird files
 vendor/lib/hw/flp.default.so
