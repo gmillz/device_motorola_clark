@@ -8,10 +8,5 @@
    "repository":  "SlimRoms/hardware_sony_thermanager",
    "target_path": "hardware/sony/thermanager",
    "branch":      "mm6.0"
- },
- {
-   "repository":  "SlimRoms/hardware_sony_timekeep",
-   "target_path": "hardware/sony/timekeep",
-   "branch":      "mm6.0"
  }
 ]
