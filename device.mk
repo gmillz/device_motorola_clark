@@ -100,6 +100,7 @@ PRODUCT_PACKAGES += \
     init.mmi.usb.rc \
     init.qcom.power.rc \
     init.qcom.class_core.sh \
+    init.qcom.power.sh \
     init.qcom.rc \
     init.qcom.ril.sh \
     init.qcom.sh \
