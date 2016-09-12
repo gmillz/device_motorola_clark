@@ -28,26 +28,6 @@ LOCAL_PATH := $(call my-dir)
 ifneq ($(filter clark, $(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-# FSG symlinks
-FSG_IMAGES :=  \
-    0.img.gz 1.img.gz 2.img.gz 3.img.gz \
-    att.mbn sprint.mbn super.mbn tmo.mbn usc.mbn vzw.mbn \
-    clark_1.img.gz clark_2.img.gz clark_3.img.gz clark_att_2.img.gz \
-    clark_emea_1.img.gz clark_latam_1.img.gz clark_sprint_2.img.gz \
-    clark_super_1.img.gz clark_super_2.img.gz clark_super_3.img.gz \
-    clark_tmo_2.img.gz clark_verizon_2.img.gz kinzie_emea_2.img.gz \
-    kinzie_super_2.img.gz kinzie_super_3.img.gz kinzie_verizon_1.img.gz \
-    bundle_release
-
-FSG_SYMLINKS := $(addprefix $(TARGET_OUT)/rfs/msm/mpss/readonly/fsg/,$(notdir $(FSG_IMAGES)))
-$(FSG_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "FSG firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /fsg/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(FSG_SYMLINKS)
-
 # IMS symlinks
 IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
 IMS_SYMLINKS := $(addprefix $(TARGET_OUT)/app/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
