@@ -8,7 +8,7 @@ $(call inherit-product, device/motorola/clark/device.mk)
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
 # Enhanced NFC
-$(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
+#$(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/motorola/clark/overlay
 
