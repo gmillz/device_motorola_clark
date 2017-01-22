@@ -185,6 +185,7 @@
       <data name="qmi_dpm_enabled" type="int"> 0 </data>
       <data name="wda_data_format_enabled" type="int"> 1 </data>
       <data name="ep_type" type="int"> 3 </data> <!-- PCIE -->
+
       <data name="single_qmux_ch_enabled" type="int"> 1 </data>
       <data name="single_qmux_ch_conn_id_str" type="string"> rmnet_mhi0 </data>
       <data name="single_qmux_ch_name" type="string"> MHICTL0 </data>
@@ -201,9 +202,9 @@
       <data name="pnd_rps_mask" type="int"> 1 </data>
       <data name="qos_via_idl" type="int"> 0 </data>
       <data name="netdev_budget" type="int"> 9 </data>
-
-      <data name="low_latency_filters" type="int"> 1 </data>
       <data name="tc_ul_baserate" type="int"> 0 </data>
+      <data name="low_latency_filters" type="int"> 1 </data>
+
       <data name="num_modems" type="int"> 2 </data>
       <list name="modems_enabled">
          <data type="int"> 1 </data> <!-- MODEM_MSM -->
@@ -512,7 +513,7 @@
 
    </listitem>
 
-+   <!-- lykan parameters -->
+   <!-- lykan parameters -->
    <listitem name = "lykan">
 
       <data name="qmi_dpm_enabled" type="int"> 1 </data>
@@ -651,7 +652,6 @@
       </list>
 
    </listitem>
-
 
    <!-- MSM8992 parameters -->
    <listitem name = "msm8992">
@@ -1045,7 +1045,7 @@
       </list>
    </listitem>
 
-  <!-- Fusion 8084 9x45 (PCIe) parameters -->
+  <!-- Fusion 8084 + 9x45 (PCIe) parameters -->
   <listitem name = "fusion_8084_9x45_pcie">
 
     <data name="use_qmuxd" type="int"> 1 </data>
@@ -1189,7 +1189,7 @@
      </list>
    </listitem>
 
-  <!-- Fusion 8096 9x55 (PCIe) parameters -->
+  <!-- Fusion 8096 + 9x55 (PCIe) parameters -->
   <listitem name = "fusion_8096_9x55_pcie">
 
     <data name="use_qmuxd" type="int"> 1 </data>
